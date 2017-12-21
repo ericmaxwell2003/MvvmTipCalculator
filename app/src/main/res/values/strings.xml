@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TipCalculator</string>
+    <string name="action_settings">Settings</string>
+    <string name="enter_check_amount">Enter Check Amount</string>
+    <string name="tip_percentage">Tip Percentage</string>
+    <string name="_15">$1$d%</string>
+    <string name="calculate_button_label">C</string>
+</resources>
