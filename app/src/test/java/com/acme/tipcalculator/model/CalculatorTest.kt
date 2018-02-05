@@ -20,11 +20,11 @@ class CalculatorTest {
         val baseTipCalcualtion =
                 TipCalculation(checkAmount = 10.0, tipAmount = 0.0, grandTotal = 0.0)
 
-        assertThat(calculator.calculateTip(checkAmount = 10.0, tip = 10),
+        assertThat(calculator.calculateTip(checkAmount = 10.0, tipPct = 10),
                 equalTo(baseTipCalcualtion.copy(tipAmount = 1.0, grandTotal = 11.0)))
-        assertThat(calculator.calculateTip(checkAmount = 10.0, tip = 15),
+        assertThat(calculator.calculateTip(checkAmount = 10.0, tipPct = 15),
                 equalTo(baseTipCalcualtion.copy(tipAmount = 1.5, grandTotal = 11.5)))
-        assertThat(calculator.calculateTip(checkAmount = 10.0, tip = 20),
+        assertThat(calculator.calculateTip(checkAmount = 10.0, tipPct = 20),
                 equalTo(baseTipCalcualtion.copy(tipAmount = 2.0, grandTotal = 12.0)))
 
     }

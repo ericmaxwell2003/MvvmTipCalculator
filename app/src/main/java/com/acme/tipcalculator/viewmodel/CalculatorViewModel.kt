@@ -1,24 +1,35 @@
 package com.acme.tipcalculator.viewmodel
 
-import android.databinding.ObservableField
+import android.databinding.*
+import com.acme.tipcalculator.BR
 import com.acme.tipcalculator.model.Calculator
 import com.acme.tipcalculator.model.TipCalculation
 
-class CalculatorViewModel (private val calculator: Calculator) {
+class CalculatorViewModel (private val calculator: Calculator) : BaseObservable() {
 
-    var checkAmountInput : Double? = null
-    var tipPercentageAmount : Int = 10
+    var checkAmtInput = ""
+    var tipPctInput = ""
 
-    var tipCalculation = ObservableField<TipCalculation>()
+    @Bindable
+    var tipCalculation = TipCalculation()
 
-    fun performCalculation() {
+    fun calculateTip() {
 
-        val tipCalc =  calculator.calculateTip(
-                checkAmount = checkAmountInput ?: 0.0,
-                tip = tipPercentageAmount)
+        val checkAmt = checkAmtInput.toDoubleOrNull()
+        val tipPctAmt = tipPctInput.toIntOrNull()
 
-        tipCalculation.set(tipCalc)
+        if(checkAmt != null && tipPctAmt != null) {
+            tipCalculation = calculator.calculateTip(checkAmt, tipPctAmt)
+            notifyPropertyChanged(BR.tipCalculation)
+        }
 
+    }
+
+    fun loadTipCalc(tc: TipCalculation) {
+        checkAmtInput = tc.checkAmount.toString()
+        tipPctInput = tc.tipPct.toString()
+        tipCalculation = tc
+        notifyChange()
     }
 
 }

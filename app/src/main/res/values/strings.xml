@@ -1,8 +1,20 @@
 <resources>
-    <string name="app_name">TipCalculator</string>
-    <string name="action_settings">Settings</string>
-    <string name="enter_check_amount">Enter Check Amount</string>
-    <string name="tip_percentage">Tip Percentage</string>
-    <string name="_15">$1$d%</string>
-    <string name="calculate_button_label">C</string>
+    <string name="app_name">Tip Calculator</string>
+    <string name="action_load">Load</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+
+    <string name="enter_check_amount">Check</string>
+    <string name="tip_percentage_label">Tip Percentage</string>
+    <string name="desired_tip_percentage">%1$d\%%</string>
+    <string name="total_label">Total</string>
+
+    <string name="dollar_amount">%1$.02f</string>
+    <string name="total_output_label">Total</string>
+    <string name="tip_output_label">Tip</string>
+    <string name="check_amount_output_label">Check</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

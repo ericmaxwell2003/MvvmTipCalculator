@@ -8,7 +8,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
+import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -24,18 +24,21 @@ class CalculatorViewModelTest {
     fun testPerformCalculation() {
 
         val tipCalculationStub =
-                TipCalculation(1.0, 0.5, 1.5)
+                TipCalculation(10.0, 2.0, 12.0)
 
-        viewModel.checkAmountInput = 10.0
-        viewModel.tipPercentageAmount = 15
-
-        `when`(calculator.calculateTip(10.0, 15))
+        `when`(calculator.calculateTip(10.0, 20))
                 .thenReturn(tipCalculationStub)
 
-        viewModel.performCalculation()
 
-        assertThat(viewModel.tipCalculation.get(), equalTo(
-                tipCalculationStub))
+        viewModel.checkAmountInput = 10.0.toString()
+        viewModel.tipPercentageAmount = 20
+
+
+        viewModel.calculateTip()
+
+
+        verify(calculator, times(1)).calculateTip(10.0, 20)
+        assertThat(viewModel.tipCalculation, equalTo(tipCalculationStub))
 
     }
 
