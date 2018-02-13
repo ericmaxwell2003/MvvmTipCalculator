@@ -24,14 +24,14 @@ class CalculatorViewModelTest {
     fun testPerformCalculation() {
 
         val tipCalculationStub =
-                TipCalculation(10.0, 2.0, 12.0)
+                TipCalculation(checkAmount = 10.0, tipAmount = 2.0, grandTotal = 12.0)
 
         `when`(calculator.calculateTip(10.0, 20))
                 .thenReturn(tipCalculationStub)
 
 
-        viewModel.checkAmountInput = 10.0.toString()
-        viewModel.tipPercentageAmount = 20
+        viewModel.checkAmtInput = 10.0.toString()
+        viewModel.tipPctInput = 20.toString()
 
 
         viewModel.calculateTip()

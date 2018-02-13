@@ -1,5 +1,6 @@
 package com.acme.tipcalculator.model
 
+import junit.framework.Assert
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
@@ -17,15 +18,16 @@ class CalculatorTest {
     @Test
     fun testCalculateTips() {
 
-        val baseTipCalcualtion =
-                TipCalculation(checkAmount = 10.0, tipAmount = 0.0, grandTotal = 0.0)
+        val baseTc = TipCalculation(checkAmount = 10.0)
 
-        assertThat(calculator.calculateTip(checkAmount = 10.0, tipPct = 10),
-                equalTo(baseTipCalcualtion.copy(tipAmount = 1.0, grandTotal = 11.0)))
-        assertThat(calculator.calculateTip(checkAmount = 10.0, tipPct = 15),
-                equalTo(baseTipCalcualtion.copy(tipAmount = 1.5, grandTotal = 11.5)))
-        assertThat(calculator.calculateTip(checkAmount = 10.0, tipPct = 20),
-                equalTo(baseTipCalcualtion.copy(tipAmount = 2.0, grandTotal = 12.0)))
+        listOf(
+                baseTc.copy(tipPct = 15, tipAmount = 1.50, grandTotal = 11.50),
+                baseTc.copy(tipPct = 18, tipAmount = 1.80, grandTotal = 11.80),
+                baseTc.copy(tipPct = 20, tipAmount = 2.00, grandTotal = 12.00)
+        ).forEach {
+            Assert.assertEquals(it, calculator.calculateTip(it.checkAmount, it.tipPct))
+        }
+
 
     }
 
