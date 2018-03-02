@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
-        android:paddingBottom="26dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_tip_calculator"
         tools:context="com.acme.tipcalculator.view.TipCalculatorActivity">
 
@@ -60,7 +60,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:paddingTop="16dp"
-            android:paddingBottom="26dp"
             android:baselineAligned="false"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"

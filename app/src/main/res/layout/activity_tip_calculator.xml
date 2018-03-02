@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="vm" type="com.acme.tipcalculator.viewmodel.CalculatorViewModel" />
+        <variable
+            name="vm"
+            type="com.acme.tipcalculator.viewmodel.CalculatorViewModel" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -13,9 +15,8 @@
         tools:context="com.acme.tipcalculator.view.TipCalculatorActivity">
 
         <android.support.design.widget.AppBarLayout
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:fitsSystemWindows="true"
+            android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.v7.widget.Toolbar
@@ -27,25 +28,18 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <include layout="@layout/content_tip_calculator" app:vm="@{vm}" />
-
-        </android.support.v4.widget.NestedScrollView>
+        <include
+            layout="@layout/content_tip_calculator"
+            app:vm="@{vm}" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/calculate_fab"
-            android:onClick="@{() -> vm.calculateTip()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
+            android:onClick="@{() -> vm.calculateTip()}"
             android:src="@drawable/ic_money_white_24dp" />
-
-
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>
