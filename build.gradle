@@ -1,7 +1,28 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.0'
+
+    ext {
+        kotlin_version  = '1.2.21'
+        support_library = '27.1.0'
+        build_tools     = '26.0.2'
+        constraint_layout = '1.0.2'
+        databinding_compiler = "3.1.0-alpha05"
+        junit = '4.12'
+        mockito = '2.11.0'
+        espresso = '3.0.1'
+        android_junit_runner = '1.0.1'
+
+        compile_sdk = 27
+        min_sdk = 19
+        target_sdk = 27
+
+        app_id = 'com.acme.tipcalculator'
+        version_code = 1
+        version_name = '1.0'
+    }
+
+
     repositories {
         google()
         jcenter()
@@ -16,6 +37,7 @@ buildscript {
 }
 
 allprojects {
+    ext
     repositories {
         google()
         jcenter()
