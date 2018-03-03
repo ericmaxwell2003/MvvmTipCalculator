@@ -9,9 +9,15 @@ import com.acme.tipcalculator.databinding.SavedTipCalculationsListItemBinding
 import com.acme.tipcalculator.model.TipCalculation
 
 class LoadTipCalculationRecyclerAdapter(
-        val savedTipCalculations: List<TipCalculation>,
+        val savedTipCalculations: MutableList<TipCalculation> = mutableListOf<TipCalculation>(),
         val onTipCalcSelected: (tc: TipCalculation) -> Unit = {}) :
         RecyclerView.Adapter<LoadTipCalculationRecyclerAdapter.LoadTipCalculationViewHolder>() {
+
+    fun updateList(updates: List<TipCalculation>) {
+        savedTipCalculations.clear()
+        savedTipCalculations.addAll(updates)
+        notifyDataSetChanged()
+    }
 
     override fun onBindViewHolder(holder: LoadTipCalculationViewHolder, position: Int) {
         holder.bind(savedTipCalculations[position])

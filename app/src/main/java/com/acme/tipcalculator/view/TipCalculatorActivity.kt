@@ -1,9 +1,9 @@
 package com.acme.tipcalculator.view
 
-import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -11,12 +11,12 @@ import com.acme.tipcalculator.R
 import com.acme.tipcalculator.databinding.ActivityTipCalculatorBinding
 import com.acme.tipcalculator.model.TipCalculation
 import com.acme.tipcalculator.viewmodel.CalculatorViewModel
-import kotlinx.android.synthetic.main.activity_tip_calculator.*
 
+class TipCalculatorActivity : AppCompatActivity(),
+        LoadDialogFragment.Callback,
+        SaveDialogFragment.Callback {
 
-class TipCalculatorActivity : AppCompatActivity(), LoadDialogFragment.Callback {
-
-    lateinit var viewModel: CalculatorViewModel
+    private lateinit var binding: ActivityTipCalculatorBinding
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_tip_calculator, menu)
@@ -41,12 +41,10 @@ class TipCalculatorActivity : AppCompatActivity(), LoadDialogFragment.Callback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(CalculatorViewModel::class.java)
+        binding = DataBindingUtil.setContentView<ActivityTipCalculatorBinding>(this, R.layout.activity_tip_calculator)
+        setSupportActionBar(binding.toolbar)
 
-        val binding = DataBindingUtil.setContentView<ActivityTipCalculatorBinding>(this, R.layout.activity_tip_calculator)
-        setSupportActionBar(toolbar)
-
-        binding.vm = viewModel
+        binding.vm = ViewModelProviders.of(this).get(CalculatorViewModel::class.java)
     }
 
     fun showSaveDialog() {
@@ -60,11 +58,13 @@ class TipCalculatorActivity : AppCompatActivity(), LoadDialogFragment.Callback {
     }
 
     override fun onTipSelected(tipCalc: TipCalculation) {
-        viewModel.loadTipCalc(tipCalc)
+        binding.vm?.loadTipCalculation(tipCalc)
+        Snackbar.make(binding.root, "Loaded ${tipCalc.locationName}", Snackbar.LENGTH_SHORT).show()
     }
 
-    companion object {
-        val LOAD_TIP_REQUEST_CODE = 1
+    override fun onSaveTip(name: String) {
+        binding.vm?.saveCurrentTip(name)
+        Snackbar.make(binding.root, "Saved $name", Snackbar.LENGTH_SHORT).show()
     }
 
 }

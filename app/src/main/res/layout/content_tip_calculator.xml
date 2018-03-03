@@ -30,6 +30,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_check_amount"
                 android:inputType="numberDecimal"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
                 android:selectAllOnFocus="true"
                 android:text="@={vm.checkAmtInput}" />
 
@@ -50,6 +52,9 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/tip_percentage_label"
                 android:inputType="number"
+                android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:imeOptions="actionDone"
                 android:text="@={vm.tipPctInput}" />
 
         </android.support.design.widget.TextInputLayout>

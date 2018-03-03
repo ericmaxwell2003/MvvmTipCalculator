@@ -1,16 +1,21 @@
 package com.acme.tipcalculator.view
 
 import android.app.Dialog
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import com.acme.tipcalculator.R
 import com.acme.tipcalculator.model.TipCalculation
+import com.acme.tipcalculator.viewmodel.CalculatorViewModel
 import kotlinx.android.synthetic.main.saved_tip_calculations_list.view.*
 
 
@@ -20,16 +25,22 @@ class LoadDialogFragment : DialogFragment() {
         fun onTipSelected(tipCalc: TipCalculation)
     }
 
-    var itemSelectedCallback: Callback? = null
+    private var calculatorViewModel: CalculatorViewModel? = null
+    private var itemSelectedCallback: Callback? = null
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         itemSelectedCallback = context as? Callback
+        if(context is FragmentActivity) {
+            calculatorViewModel = ViewModelProviders.of(context).get(CalculatorViewModel::class.java)
+
+        }
     }
 
     override fun onDetach() {
         super.onDetach()
         itemSelectedCallback = null
+        calculatorViewModel = null
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -54,21 +65,19 @@ class LoadDialogFragment : DialogFragment() {
         rv.setHasFixedSize(true)
         rv.addItemDecoration(DividerItemDecoration(ctx, DividerItemDecoration.VERTICAL))
 
-        rv.adapter = LoadTipCalculationRecyclerAdapter(
-                savedTipCalculations = listOf(
-                        TipCalculation(locationName = "House of Veggie",
-                                checkAmount = 20.00, tipPct = 25,
-                                tipAmount = 5.00, grandTotal = 25.00),
-                        TipCalculation(locationName = "Big Kahuna Burger",
-                                checkAmount = 10.00, tipPct = 25,
-                                tipAmount = 2.50, grandTotal = 12.50)
-
-                ),
+        val tcListAdapter = LoadTipCalculationRecyclerAdapter(
                 onTipCalcSelected = { tipCalc ->
                     itemSelectedCallback?.onTipSelected(tipCalc = tipCalc)
                     dismiss()
                 }
         )
+        rv.adapter = tcListAdapter
+
+        calculatorViewModel?.loadSavedTipCalculations()?.observe(this, Observer { tips ->
+            if(tips != null) {
+                tcListAdapter.updateList(tips)
+            }
+        })
 
         return rv
     }
