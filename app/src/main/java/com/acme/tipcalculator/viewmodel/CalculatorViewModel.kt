@@ -4,8 +4,10 @@ import android.databinding.*
 import com.acme.tipcalculator.BR
 import com.acme.tipcalculator.model.Calculator
 import com.acme.tipcalculator.model.TipCalculation
+import javax.inject.Inject
 
-class CalculatorViewModel (private val calculator: Calculator) : BaseObservable() {
+
+class CalculatorViewModel @Inject constructor(private val calculator: Calculator) : BaseObservableViewModel() {
 
     var checkAmtInput = ""
     var tipPctInput = ""
