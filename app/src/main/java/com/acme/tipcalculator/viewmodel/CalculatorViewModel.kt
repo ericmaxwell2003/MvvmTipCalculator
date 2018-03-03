@@ -12,10 +12,6 @@ class CalculatorViewModel constructor(private val calculator: Calculator = Calcu
     var checkAmtInput = ""
     var tipPctInput = ""
 
-    init {
-        Timber.d("Init")
-    }
-
     @Bindable
     var tipCalculation = TipCalculation()
 

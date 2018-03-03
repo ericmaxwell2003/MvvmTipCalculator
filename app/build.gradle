@@ -43,17 +43,10 @@ dependencies {
     // Timber
     implementation "com.jakewharton.timber:timber:$timber"
 
-    // Dagger
-    implementation "com.google.dagger:dagger:$dagger"
-    implementation "com.google.dagger:dagger-android:$dagger"
-    implementation "com.google.dagger:dagger-android-support:$dagger"
-    kapt "com.google.dagger:dagger-compiler:$dagger"
-    kapt "com.google.dagger:dagger-android-processor:$dagger"
-
     // Test
     testImplementation "junit:junit:$junit"
+    testImplementation "org.mockito:mockito-core:$mockito"
     androidTestImplementation "com.android.support.test:runner:$android_junit_runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso"
-    testImplementation "org.mockito:mockito-core:$mockito"
-    androidTestCompile "org.mockito:mockito-android:$mockito"
+
 }
