@@ -4,21 +4,24 @@ import com.acme.tipcalculator.model.Calculator
 import com.acme.tipcalculator.model.TipCalculation
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito.*
-import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.MockitoAnnotations
 
-@RunWith(MockitoJUnitRunner::class)
 class CalculatorViewModelTest {
 
-    @InjectMocks
     lateinit var viewModel : CalculatorViewModel
 
     @Mock
-    lateinit var calculator: Calculator
+    lateinit var mockCalculator: Calculator
+
+    @Before
+    fun setup() {
+        MockitoAnnotations.initMocks(this)
+        viewModel = CalculatorViewModel(mockCalculator)
+    }
 
     @Test
     fun testPerformCalculation() {
@@ -26,7 +29,7 @@ class CalculatorViewModelTest {
         val tipCalculationStub =
                 TipCalculation(checkAmount = 10.0, tipAmount = 2.0, grandTotal = 12.0)
 
-        `when`(calculator.calculateTip(10.0, 20))
+        `when`(mockCalculator.calculateTip(10.0, 20))
                 .thenReturn(tipCalculationStub)
 
 
@@ -37,7 +40,7 @@ class CalculatorViewModelTest {
         viewModel.calculateTip()
 
 
-        verify(calculator, times(1)).calculateTip(10.0, 20)
+        verify(mockCalculator, times(1)).calculateTip(10.0, 20)
         assertThat(viewModel.tipCalculation, equalTo(tipCalculationStub))
 
     }

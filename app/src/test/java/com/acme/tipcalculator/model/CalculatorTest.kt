@@ -12,7 +12,7 @@ class CalculatorTest {
 
     @Before
     fun setup() {
-        calculator = RestaurantCalculator()
+        calculator = Calculator()
     }
 
     @Test

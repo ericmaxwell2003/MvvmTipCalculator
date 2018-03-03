@@ -1,16 +1,19 @@
 package com.acme.tipcalculator.viewmodel
 
-import android.databinding.*
+import android.databinding.Bindable
 import com.acme.tipcalculator.BR
 import com.acme.tipcalculator.model.Calculator
 import com.acme.tipcalculator.model.TipCalculation
-import javax.inject.Inject
+import timber.log.Timber
 
-
-class CalculatorViewModel @Inject constructor(private val calculator: Calculator) : BaseObservableViewModel() {
+class CalculatorViewModel constructor(private val calculator: Calculator = Calculator()) : BaseObservableViewModel() {
 
     var checkAmtInput = ""
     var tipPctInput = ""
+
+    init {
+        Timber.d("Init")
+    }
 
     @Bindable
     var tipCalculation = TipCalculation()
