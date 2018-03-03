@@ -5,7 +5,6 @@ import android.databinding.Bindable
 import com.acme.tipcalculator.BR
 import com.acme.tipcalculator.model.Calculator
 import com.acme.tipcalculator.model.TipCalculation
-import timber.log.Timber
 
 class CalculatorViewModel constructor(private val calculator: Calculator = Calculator()) : BaseObservableViewModel() {
 
