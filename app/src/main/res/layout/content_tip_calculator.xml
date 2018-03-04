@@ -154,6 +154,20 @@
 
         </LinearLayout>
 
+        <!--
+            Lab 4: Adapters and Converters
+
+            Make use of a new custom attribute pair
+            app:text - Expression value of the locationName
+            app:animate - Expression value of whether to animate transitions or not
+
+            This will need to be implemented as a BindingAdapter for this to work
+            See `BindingAdapters.kt` for other half (open with cmd+o)
+
+            Bonus Questions:
+            * - What happens if you omit one of the two attributes?
+            * - What happens if you do not use as expression?
+        -->
         <TextView
             android:id="@+id/calculation_name"
             style="@style/Base.TextAppearance.AppCompat.Headline"
@@ -165,8 +179,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/calculation_outputs"
             android:textAlignment="center"
-            app:text="@{vm.tipCalculation.locationName}"
-            app:animate="@{true}"
+            android:text="@{vm.tipCalculation.locationName}"
             tools:text="Veggie Palace" />
 
 
