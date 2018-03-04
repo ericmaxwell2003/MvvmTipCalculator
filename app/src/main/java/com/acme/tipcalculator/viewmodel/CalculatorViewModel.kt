@@ -35,6 +35,8 @@ class CalculatorViewModel constructor(private val calculator: Calculator = Calcu
     fun saveCurrentTip(name: String) {
         val tipToSave = tipCalculation.copy(locationName = name)
         calculator.saveTipCalculation(tipToSave)
+        tipCalculation = tipToSave
+        notifyPropertyChanged(BR.tipCalculation)
     }
 
     fun loadSavedTipCalculations() : LiveData<List<TipCalculation>> {
