@@ -1,9 +1,6 @@
 package com.acme.tipcalculator.viewmodel
 
 import android.arch.lifecycle.LiveData
-import android.databinding.BaseObservable
-import android.databinding.Bindable
-import com.acme.tipcalculator.BR
 import com.acme.tipcalculator.model.Calculator
 import com.acme.tipcalculator.model.TipCalculation
 

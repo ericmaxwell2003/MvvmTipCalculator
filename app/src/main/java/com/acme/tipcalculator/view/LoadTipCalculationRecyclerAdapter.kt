@@ -1,12 +1,10 @@
 package com.acme.tipcalculator.view
 
-import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.acme.tipcalculator.R
-import com.acme.tipcalculator.databinding.SavedTipCalculationsListItemBinding
 import com.acme.tipcalculator.model.TipCalculation
 
 /**
