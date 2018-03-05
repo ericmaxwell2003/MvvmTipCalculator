@@ -16,11 +16,11 @@ class TipCalculatorActivity : AppCompatActivity(),
         LoadDialogFragment.Callback,
         SaveDialogFragment.Callback {
 
-    /** Lab 1: Add a lateinit var called binding of the generated binding type from `activity_tip_calculator.xml` */
+    /** TODO Lab 1: Add a lateinit var called binding of the generated binding type from `activity_tip_calculator.xml` */
 
 
     /**
-     * Lab 2: (Optional) Remove this member variable as the binding will have a reference
+     * TODO Lab 2: (Optional) Remove this member variable as the binding will have a reference
      *        to the viewModel and we are already storing a class member reference to the binding.
      */
     private lateinit var calculatorViewModel: CalculatorViewModel
@@ -49,14 +49,14 @@ class TipCalculatorActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
 
         /**
-         * Lab 3: Uncomment this line to assign a calculatorViewModel using the AC ViewModelProviders
+         * TODO Lab 3: Uncomment this line to assign a calculatorViewModel using the AC ViewModelProviders
          *        factory method and remove the following one
          */
         // calculatorViewModel = ViewModelProviders.of(context).get(CalculatorViewModel::class.java)
         calculatorViewModel = CalculatorViewModel()
 
         /**
-         * Lab 1: Use the static DataBindingUtil class to set the content view and generate the binding for this
+         * TODO Lab 1: Use the static DataBindingUtil class to set the content view and generate the binding for this
          *        view in one step.
          *        Use this to set the lateinit binding var that you defined at the class level.
          *
@@ -65,20 +65,20 @@ class TipCalculatorActivity : AppCompatActivity(),
          setContentView(R.layout.activity_tip_calculator)
 
         /**
-         * Lab 1: Access the toolbar from the binding directly instead of using findViewById(..)
+         * TODO Lab 1: Access the toolbar from the binding directly instead of using findViewById(..)
          * Bonus Question:  Is this more efficient? why or why not?
          */
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        /** Lab 1: Access the fab from the binding directly instead of using findViewById(..) */
+        /** TODO Lab 1: Access the fab from the binding directly instead of using findViewById(..) */
         /**
-         * Lab 2: Remove this entire FAB listener block.  We're going to let Data Binding do the work
+         * TODO Lab 2: Remove this entire FAB listener block.  We're going to let Data Binding do the work
          *        of binding viewModel actions to the view and react to viewModel updates.
          *
          */
         findViewById<FloatingActionButton>(R.id.calculate_fab).setOnClickListener { _ ->
 
-            /** Lab 1: Everywhere inside of this action block replace the findViewById(..) lookup
+            /** TODO Lab 1: Everywhere inside of this action block replace the findViewById(..) lookup
              *         with a property lookup on the binding.
              *   Hint: Because these views are bound to the child binding / layout file included inside
              *         of content_tip_calculator.xml, you'll need to access the binding through
@@ -106,7 +106,7 @@ class TipCalculatorActivity : AppCompatActivity(),
 
 
         /**
-         * Lab 2: Add a line below to assign calculatorVm to the view's vm variable.
+         * TODO Lab 2: Add a line below to assign calculatorVm to the view's vm variable.
          */
     }
 
@@ -122,25 +122,25 @@ class TipCalculatorActivity : AppCompatActivity(),
 
     override fun onTipSelected(tipCalc: TipCalculation) {
         /**
-         * Lab 2: (Optional) Update this line to access the CalculatorView model from
+         * TODO Lab 2: (Optional) Update this line to access the CalculatorView model from
          *        binding.vm after the variable has been defined in the ActivityTipCalculatorBinding
          *        This goes along with the optional removal of the calculatorViewModel reference above.
          */
         calculatorViewModel.loadTipCalculation(tipCalc)
 
-        /** Lab 1: Replace this findViewById with the property that the binding gives you to access the root view. */
+        /** TODO Lab 1: Replace this findViewById with the property that the binding gives you to access the root view. */
         Snackbar.make(window.decorView.findViewById(android.R.id.content), "Loaded ${tipCalc.locationName}", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onSaveTip(name: String) {
         /**
-         * Lab 2: (Optional) Update this line to access the CalculatorView model from
+         * TODO Lab 2: (Optional) Update this line to access the CalculatorView model from
          *        binding.vm after the variable has been defined in the ActivityTipCalculatorBinding
          *        This goes along with the optional removal of the calculatorViewModel reference above.
          */
         calculatorViewModel.saveCurrentTip(name)
 
-        /** Lab 1: Everywhere inside of this block replace the findViewById(..) lookup
+        /** TODO Lab 1: Everywhere inside of this block replace the findViewById(..) lookup
          *         with a property lookup on the binding.
          *   Hint: Because these views are bound to the child binding / layout file included inside
          *         of content_tip_calculator.xml, you'll need to access the binding through
@@ -151,7 +151,7 @@ class TipCalculatorActivity : AppCompatActivity(),
          *                      layout="@layout/content_tip_calculator" />
          */
         /**
-         * Lab 2: Remove this entire block to update the view after saving the tip.  We're going to let
+         * TODO Lab 2: Remove this entire block to update the view after saving the tip.  We're going to let
          *        data binding react to the changed ViewModel state.
          */
         calculatorViewModel.tipCalculation.let { tc ->
@@ -161,7 +161,7 @@ class TipCalculatorActivity : AppCompatActivity(),
             (findViewById<TextView>(R.id.calculation_name)).text = tc.locationName
         }
 
-        /** Lab 1: Replace this findViewById with the property that the binding gives you to access the root view. */
+        /** TODO Lab 1: Replace this findViewById with the property that the binding gives you to access the root view. */
         Snackbar.make(window.decorView.findViewById(android.R.id.content), "Saved $name", Snackbar.LENGTH_SHORT).show()
     }
 

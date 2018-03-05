@@ -19,7 +19,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    /** Lab 1: Turn on data binding by uncommenting the configuration here to turn it on. */
+    /** TODO Lab 1: Turn on data binding by uncommenting the configuration here to turn it on. */
     /*
     dataBinding {
         enabled = true
@@ -40,7 +40,7 @@ dependencies {
     implementation "com.android.support:support-v4:$support_library"
     implementation "android.arch.lifecycle:extensions:$arch_comp"
 
-    /** Lab 1: Because we are using Kotlin, we must declare the Kotlin Annotation Processing (kapt)
+    /** TODO Lab 1: Because we are using Kotlin, we must declare the Kotlin Annotation Processing (kapt)
      *         dependency on the data binding compiler. Uncomment this line to do that. */
     //kapt "com.android.databinding:compiler:$databinding_compiler"
 

@@ -8,7 +8,7 @@ import com.acme.tipcalculator.R
 import com.acme.tipcalculator.model.TipCalculation
 
 /**
- * Lab 3: Working w/ AC ViewModels, LiveData, RecyclerViews
+ * TODO Lab 3: Working w/ AC ViewModels, LiveData, RecyclerViews
  *
  * See individual sections for hints & instructions.
  *
@@ -37,7 +37,7 @@ class LoadTipCalculationRecyclerAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoadTipCalculationViewHolder {
 
         /**
-         * Lab3: Change this to use the static DataBindingUtil inflate function to create
+         * TODO Lab 3: Change this to use the static DataBindingUtil inflate function to create
          *       a SavedTipCalculationsListItemBinding, then construct a LoadTipCalculationViewHolder
          *       with that binding instead of the root view.
          */
@@ -47,7 +47,7 @@ class LoadTipCalculationRecyclerAdapter(
     }
 
     /**
-     * Lab3: Modify this ViewHolder to take a binding instead of a view.
+     * TODO Lab 3: Modify this ViewHolder to take a binding instead of a view.
      *       Store the binding as a member variable.
      *
      * Hint: It still needs to extend RecyclerView.ViewHolder(root: View) which expects
@@ -62,7 +62,7 @@ class LoadTipCalculationRecyclerAdapter(
             // normally do manual setting of texts and other view state management
             // directly on the views from here.
             /**
-             * Lab 3: Add to this function to set the bindings tipCalculation variable
+             * TODO Lab 3: Add to this function to set the bindings tipCalculation variable
              *        on the binding member val of the viewHolder.
              *
              *        This variable was declared in `saved_tip_calculations_list_item.xml`.

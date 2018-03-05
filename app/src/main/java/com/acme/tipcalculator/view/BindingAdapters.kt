@@ -5,7 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.view.View
 
 /**
- * Lab 4: Adapters and Converters
+ * TODO Lab 4: Adapters and Converters
  *
  * Wire this function up as a Binding Adapter for TextViews to support the custom
  * View Attribute pair

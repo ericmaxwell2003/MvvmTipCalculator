@@ -17,7 +17,7 @@ import com.acme.tipcalculator.viewmodel.CalculatorViewModel
 import kotlinx.android.synthetic.main.saved_tip_calculations_list.view.*
 
 /**
- * Lab 3: Working w/ AC ViewModels, LiveData, RecyclerViews
+ * TODO Lab 3: Working w/ AC ViewModels, LiveData, RecyclerViews
  *
  * Add/Update the missing pieces of this Fragment to get a handle on the lifecycle aware
  * AC ViewModel, use it to get saved TipCalculations as LiveData and update the recyclerViews
@@ -44,7 +44,7 @@ class LoadDialogFragment : DialogFragment() {
         itemSelectedCallback = context as? Callback
         if(context is FragmentActivity) {
             /**
-             * Lab 3: Uncomment this line to assign a calculatorViewModel when we attach to the
+             * TODO Lab 3: Uncomment this line to assign a calculatorViewModel when we attach to the
              *        hosting activity.
              */
             // calculatorViewModel = ViewModelProviders.of(context).get(CalculatorViewModel::class.java)
@@ -88,7 +88,7 @@ class LoadDialogFragment : DialogFragment() {
         rv.adapter = tcListAdapter
 
         /**
-         * Lab 3: Uncomment this code block to ask the ViewModel for TipCalculations
+         * TODO Lab 3: Uncomment this code block to ask the ViewModel for TipCalculations
          *        as LiveData and update the LoadTipCalculationRecyclerAdapter with the
          *        update list of tips when a change is observed.
          */
