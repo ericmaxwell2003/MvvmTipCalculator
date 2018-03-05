@@ -14,7 +14,4 @@
     <string name="tip_output_label">Tip</string>
     <string name="check_amount_output_label">Check</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 </resources>

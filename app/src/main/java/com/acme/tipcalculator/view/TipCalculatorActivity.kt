@@ -17,6 +17,12 @@ class TipCalculatorActivity : AppCompatActivity(),
 
     private lateinit var binding: ActivityTipCalculatorBinding
 
+    /**
+     * Lab 2: (Optional) Remove this member variable as the binding will have a reference
+     *        to the viewModel and we are already storing a class member reference to the binding.
+     */
+    private lateinit var calculatorViewModel: CalculatorViewModel
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_tip_calculator, menu)
         return true
@@ -40,15 +46,45 @@ class TipCalculatorActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        /**
+         * Lab 3: Uncomment this line to assign a calculatorViewModel using the AC ViewModelProviders
+         *        factory method and remove the following one
+         */
+        // calculatorViewModel = ViewModelProviders.of(context).get(CalculatorViewModel::class.java)
+        calculatorViewModel = CalculatorViewModel()
+
         binding = DataBindingUtil.setContentView<ActivityTipCalculatorBinding>(this, R.layout.activity_tip_calculator)
         setSupportActionBar(binding.toolbar)
 
         /**
-         * Lab 3: Uncomment this line to assign a calculatorViewModel using the AC ViewModelProviders
-         *        factory method.
+         * Lab 2: Remove this entire FAB listener block.  We're going to let Data Binding do the work
+         *        of binding viewModel actions to the view and react to viewModel updates.
+         *
          */
-        // calculatorViewModel = ViewModelProviders.of(context).get(CalculatorViewModel::class.java)
-        binding.vm = CalculatorViewModel()
+        binding.calculateFab.setOnClickListener { _ ->
+            binding.content?.apply {
+
+                // Without data binding, we have to manually set the inputs on our view model.
+                calculatorViewModel.checkAmtInput = inputCheckAmount.text.toString()
+                calculatorViewModel.tipPctInput = inputTipPercentage.text.toString()
+
+                // Invoke Calculate Tip on the ViewModel
+                calculatorViewModel.calculateTip()
+
+                // After the calculation, we need to manually update our view elements
+                calculatorViewModel.tipCalculation.let { tc ->
+                    billAmount.text = getString(R.string.dollar_amount, tc.checkAmount)
+                    tipDollarAmount.text = getString(R.string.dollar_amount, tc.tipAmount)
+                    totalDollarAmount.text = getString(R.string.dollar_amount, tc.grandTotal)
+                    calculationName.text = tc.locationName
+                }
+            }
+        }
+
+
+        /**
+         * Lab 2: Add a line below to assign calculatorVm to the view's vm variable.
+         */
     }
 
     fun showSaveDialog() {
@@ -62,12 +98,36 @@ class TipCalculatorActivity : AppCompatActivity(),
     }
 
     override fun onTipSelected(tipCalc: TipCalculation) {
-        binding.vm?.loadTipCalculation(tipCalc)
+        /**
+         * Lab 2: (Optional) Update this line to access the CalculatorView model from
+         *        binding.vm after the variable has been defined in the ActivityTipCalculatorBinding
+         *        This goes along with the optional removal of the calculatorViewModel reference above.
+         */
+        calculatorViewModel.loadTipCalculation(tipCalc)
         Snackbar.make(binding.root, "Loaded ${tipCalc.locationName}", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onSaveTip(name: String) {
-        binding.vm?.saveCurrentTip(name)
+        /**
+         * Lab 2: (Optional) Update this line to access the CalculatorView model from
+         *        binding.vm after the variable has been defined in the ActivityTipCalculatorBinding
+         *        This goes along with the optional removal of the calculatorViewModel reference above.
+         */
+        calculatorViewModel.saveCurrentTip(name)
+
+        /**
+         * Lab 2: Remove this entire block to update the view after saving the tip.  We're going to let
+         *        data binding react to the changed ViewModel state.
+         */
+        binding.content?.apply {
+            calculatorViewModel.tipCalculation.let { tc ->
+                billAmount.text = getString(R.string.dollar_amount, tc.checkAmount)
+                tipDollarAmount.text = getString(R.string.dollar_amount, tc.tipAmount)
+                totalDollarAmount.text = getString(R.string.dollar_amount, tc.grandTotal)
+                calculationName.text = tc.locationName
+            }
+        }
+
         Snackbar.make(binding.root, "Saved $name", Snackbar.LENGTH_SHORT).show()
     }
 

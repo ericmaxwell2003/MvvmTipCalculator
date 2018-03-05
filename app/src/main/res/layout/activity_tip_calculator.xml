@@ -3,12 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="vm"
-            type="com.acme.tipcalculator.viewmodel.CalculatorViewModel" />
-    </data>
+    <!--
+       Lab 2:
 
+       Add a variable called `vm` of type `com.acme.tipcalculator.viewmodel.CalculatorViewModel`
+       to use within the context of this view.  Be sure to wrap it in a data section.
+
+       Bonus Questions:
+       * - What method gets generate on the binding object in response to adding this variable?
+     -->
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,17 +31,20 @@
 
         </android.support.design.widget.AppBarLayout>
 
+        <!-- Lab 2: Pass `vm` to content_tip_calculator. -->
         <include
-            layout="@layout/content_tip_calculator"
-            app:vm="@{vm}" />
+            android:id="@+id/content"
+            layout="@layout/content_tip_calculator" />
 
+
+        <!-- Lab 2: Use a lambda expression to invoke vm.calculateTip()
+                    [with no arguments] directly from this FAB definition onClick  -->
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/calculate_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            android:onClick="@{() -> vm.calculateTip()}"
             android:src="@drawable/ic_money_white_24dp" />
 
     </android.support.design.widget.CoordinatorLayout>
