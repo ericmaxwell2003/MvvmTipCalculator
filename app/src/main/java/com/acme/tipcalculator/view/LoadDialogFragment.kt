@@ -16,7 +16,20 @@ import com.acme.tipcalculator.model.TipCalculation
 import com.acme.tipcalculator.viewmodel.CalculatorViewModel
 import kotlinx.android.synthetic.main.saved_tip_calculations_list.view.*
 
-
+/**
+ * Lab 3: Working w/ AC ViewModels, LiveData, RecyclerViews
+ *
+ * Add/Update the missing pieces of this Fragment to get a handle on the lifecycle aware
+ * AC ViewModel, use it to get saved TipCalculations as LiveData and update the recyclerViews
+ * TipCalculations when updates are received.
+ *
+ * See individual sections for hints & instructions.
+ *
+ * Bonus Questions:
+ * - What value are you getting from using an AC ViewModel?
+ * - When we ask ViewModelProviders.of(context) in OnAttach for a CalculatorViewModel
+ *   is it constructing a new instance?  Why or why not?
+ */
 class LoadDialogFragment : DialogFragment() {
 
     interface Callback {
@@ -30,8 +43,11 @@ class LoadDialogFragment : DialogFragment() {
         super.onAttach(context)
         itemSelectedCallback = context as? Callback
         if(context is FragmentActivity) {
-            calculatorViewModel = ViewModelProviders.of(context).get(CalculatorViewModel::class.java)
-
+            /**
+             * Lab 3: Uncomment this line to assign a calculatorViewModel when we attach to the
+             *        hosting activity.
+             */
+            // calculatorViewModel = ViewModelProviders.of(context).get(CalculatorViewModel::class.java)
         }
     }
 
@@ -71,11 +87,18 @@ class LoadDialogFragment : DialogFragment() {
         )
         rv.adapter = tcListAdapter
 
+        /**
+         * Lab 3: Uncomment this code block to ask the ViewModel for TipCalculations
+         *        as LiveData and update the LoadTipCalculationRecyclerAdapter with the
+         *        update list of tips when a change is observed.
+         */
+        /*
         calculatorViewModel?.loadSavedTipCalculations()?.observe(this, Observer { tips ->
             if(tips != null) {
                 tcListAdapter.updateList(tips)
             }
         })
+        */
 
         return rv
     }
