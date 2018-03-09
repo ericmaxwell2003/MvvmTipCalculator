@@ -6,9 +6,7 @@ import com.acme.tipcalculator.model.TipCalculation
 
 
 /**
- * TODO Lab 2: Binding Data
- *
- * Extend the abstract base class BaseObservable so that this class can provide
+ * TODO Lab 2: Binding Data - Extend the abstract base class BaseObservable so that this class can provide
  * observable data for the view and notify the view when properties change.
  *
  */

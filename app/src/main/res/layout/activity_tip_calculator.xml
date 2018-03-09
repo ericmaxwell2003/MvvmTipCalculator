@@ -8,9 +8,7 @@
          - What is the name of the generated class?
      -->
     <!--
-       TODO Lab 2:
-
-       Add a variable called `vm` of type `com.acme.tipcalculator.viewmodel.CalculatorViewModel`
+       TODO Lab 2: Add a variable called `vm` of type `com.acme.tipcalculator.viewmodel.CalculatorViewModel`
        to use within the context of this view.  Be sure to wrap it in a data section.
 
        Bonus Questions:

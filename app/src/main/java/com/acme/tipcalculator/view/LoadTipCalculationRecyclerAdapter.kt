@@ -57,10 +57,10 @@ class LoadTipCalculationRecyclerAdapter(
     inner class LoadTipCalculationViewHolder(val root: View) : RecyclerView.ViewHolder(root) {
 
         fun bind(tipCalc: TipCalculation) {
+
+            /** TODO Lab 3: Will need to change this to `binding.root`... */
             root.setOnClickListener { onTipCalcSelected(tipCalc) }
 
-            // normally do manual setting of texts and other view state management
-            // directly on the views from here.
             /**
              * TODO Lab 3: Add to this function to set the bindings tipCalculation variable
              *        on the binding member val of the viewHolder.

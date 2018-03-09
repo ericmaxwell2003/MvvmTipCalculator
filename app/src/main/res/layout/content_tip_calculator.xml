@@ -5,9 +5,7 @@
        Hint: Use the quick assist functionality to do this for you.
      -->
     <!--
-        TODO Lab 2:
-
-        Add a variable called `vm` of type `com.acme.tipcalculator.viewmodel.CalculatorViewModel`
+        TODO Lab 2: Add a variable called `vm` of type `com.acme.tipcalculator.viewmodel.CalculatorViewModel`
         to use within the context of this view.  Be sure to wrap it in a data section.
 
         Bonus Questions:
