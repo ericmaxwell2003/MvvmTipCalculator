@@ -4,7 +4,6 @@
     package="com.acme.tipcalculator" >
 
     <application
-        android:name=".TipCalculatorApplication"
         tools:ignore="GoogleAppIndexingWarning"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"

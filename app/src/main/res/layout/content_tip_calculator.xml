@@ -1,16 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!--
-       TODO Lab 1: Wrap this Coordinator layout in a layout tag.
-              Afterward, move the xmlns definitions from the CoordinatorLayout to the layout tag.
-       Hint: Use the quick assist functionality to do this for you.
-     -->
-    <!--
-        TODO Lab 2: Add a variable called `vm` of type `com.acme.tipcalculator.viewmodel.CalculatorViewModel`
-        to use within the context of this view.  Be sure to wrap it in a data section.
-
-        Bonus Questions:
-        * - What method gets generate on the binding object in response to adding this variable?
-    -->
 <android.support.constraint.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -31,9 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- TODO Lab 2: Use a binding expression to set the `android:text` to the
-                    viewModel property checkAmtInput
-                    Make this a 2-way bound property. -->
         <EditText
             android:id="@+id/input_check_amount"
             android:layout_width="match_parent"
@@ -56,9 +41,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_layout_check_amount">
 
-        <!-- TODO Lab 2: Use a binding expression to set the `android:text` to the
-                    viewModel property tipPctInput
-                    Make this a 2-way bound property. -->
         <EditText
             android:id="@+id/input_tip_percentage"
             android:layout_width="match_parent"
@@ -91,16 +73,6 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <!-- TODO Lab 2: Use a binding expression to set the `android:text` for this TextView.
-                        Use a formatted string based on the template R.string.dollar_amount,
-                        Get the value from the viewModel's tipCalculation.checkAmount property.
-
-                  Hint: Remember you can access formatted strings with a data binding expression
-                        @string/<stringResId>(<inputValues>)
-                        Where <stringResId> => Id of Strings resource.
-                              <inputValues> => 0..* different arguments required by the string template
-                                               defined in the stringRestId.
-                         -->
             <TextView
                 android:id="@+id/bill_amount"
                 style="@style/Base.TextAppearance.AppCompat.Large"
@@ -128,9 +100,6 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <!-- TODO Lab 2: Use a binding expression to set the `android:text` for this TextView.
-                        Use a formatted string based on the template R.string.dollar_amount,
-                        Get the value from the viewModel's tipCalculation.tipAmount property. -->
             <TextView
                 android:id="@+id/tip_dollar_amount"
                 style="@style/Base.TextAppearance.AppCompat.Large"
@@ -158,9 +127,6 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <!-- TODO Lab 2: Use a binding expression to set the `android:text` for this TextView.
-                        Use a formatted string based on the template R.string.dollar_amount,
-                        Get the value from the viewModel's tipCalculation.grandTotal property. -->
             <TextView
                 android:id="@+id/total_dollar_amount"
                 style="@style/Base.TextAppearance.AppCompat.Large"
@@ -181,36 +147,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <!-- TODO Lab 2: Use a binding expression to set the `android:text` for this TextView.
-                Get the value from the viewModel's tipCalculation.locationName property. -->
-    <!--
-        TODO Lab 4: Adapters and Converters
-
-        Make use of a new custom attribute pair
-        app:text - Expression value of the locationName
-        app:animate - Expression value of whether to animate transitions or not
-
-        This will need to be implemented as a BindingAdapter for this to work
-        See `BindingAdapters.kt` for other half (open with cmd+o)
-
-        Bonus Questions:
-        * - What happens if you omit one of the two attributes?
-        * - What happens if you do not use as expression?
-    -->
-    <TextView
-        android:id="@+id/calculation_name"
-        style="@style/Base.TextAppearance.AppCompat.Headline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/calculation_outputs"
-        android:textAlignment="center"
-        android:text=""
-        tools:text="Veggie Palace" />
-
 
 </android.support.constraint.ConstraintLayout>

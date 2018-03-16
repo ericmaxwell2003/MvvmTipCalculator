@@ -10,10 +10,6 @@ buildscript {
         arch_comp = "1.1.0"
         databinding_compiler = "3.1.0-alpha05"
 
-        timber = "4.5.1"
-
-        dagger = "2.13"
-
         junit = '4.12'
         mockito = '2.11.0'
         espresso = '3.0.1'

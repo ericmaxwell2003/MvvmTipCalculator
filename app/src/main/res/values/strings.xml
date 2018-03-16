@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Tip Calculator</string>
-    <string name="action_load">Load</string>
-    <string name="action_save">Save</string>
-    <string name="action_cancel">Cancel</string>
 
     <string name="enter_check_amount">Check</string>
     <string name="tip_percentage_label">Tip Percentage</string>

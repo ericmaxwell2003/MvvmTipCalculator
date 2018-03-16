@@ -19,12 +19,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    /** TODO Lab 1: Turn on data binding by uncommenting the configuration here to turn it on. */
-    /*
-    dataBinding {
-        enabled = true
-    }
-    */
 }
 
 dependencies {
@@ -40,16 +34,7 @@ dependencies {
     implementation "com.android.support:support-v4:$support_library"
     implementation "android.arch.lifecycle:extensions:$arch_comp"
 
-    /** TODO Lab 1: Because we are using Kotlin, we must declare the Kotlin Annotation Processing (kapt)
-     *         dependency on the data binding compiler. Uncomment this line to do that. */
-    //kapt "com.android.databinding:compiler:$databinding_compiler"
-
-    // Timber
-    implementation "com.jakewharton.timber:timber:$timber"
-
     // Test
-    testImplementation "junit:junit:$junit"
-    testImplementation "org.mockito:mockito-core:$mockito"
     androidTestImplementation "com.android.support.test:runner:$android_junit_runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso"
 
