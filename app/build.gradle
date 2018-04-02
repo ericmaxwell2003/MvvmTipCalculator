@@ -35,6 +35,8 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$arch_comp"
 
     // Test
+    testImplementation "junit:junit:$junit"
+    testImplementation "org.mockito:mockito-core:$mockito"
     androidTestImplementation "com.android.support.test:runner:$android_junit_runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso"
 
