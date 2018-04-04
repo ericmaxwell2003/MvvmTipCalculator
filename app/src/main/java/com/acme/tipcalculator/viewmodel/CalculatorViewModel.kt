@@ -1,5 +1,6 @@
 package com.acme.tipcalculator.viewmodel
 
+import android.util.Log
 import com.acme.tipcalculator.model.Calculator
 import com.acme.tipcalculator.model.TipCalculation
 
@@ -13,6 +14,8 @@ class CalculatorViewModel(val calculator: Calculator = Calculator()) {
 
     fun calculateTip() {
 
+        Log.d(TAG, "calculateTipInvoked")
+
         val checkAmount = inputCheckAmount.toDoubleOrNull()
         val tipPct = inputTipPercentage.toIntOrNull()
 
@@ -23,3 +26,5 @@ class CalculatorViewModel(val calculator: Calculator = Calculator()) {
     }
 
 }
+
+private const val TAG = "CalculatorViewModel"
