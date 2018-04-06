@@ -30,6 +30,7 @@
 
         <include
             android:id="@+id/content"
+            app:vm="@{vm}"
             layout="@layout/content_tip_calculator" />
 
         <android.support.design.widget.FloatingActionButton

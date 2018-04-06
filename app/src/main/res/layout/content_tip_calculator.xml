@@ -1,151 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/calculation_inputs"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="8dp"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_tip_calculator"
-    tools:context="com.acme.tipcalculator.view.TipCalculatorActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_check_amount"
+    <data>
+        <variable
+            name="vm"
+            type="com.acme.tipcalculator.viewmodel.CalculatorViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/calculation_inputs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_tip_calculator"
+        tools:context="com.acme.tipcalculator.view.TipCalculatorActivity">
 
-        <EditText
-            android:id="@+id/input_check_amount"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_check_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_check_amount"
-            android:inputType="numberDecimal"
-            android:imeOptions="actionNext"
-            android:maxLines="1"
-            android:selectAllOnFocus="true"
-            android:text="" />
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/input_check_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_check_amount"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:text="" />
+
+        </android.support.design.widget.TextInputLayout>
 
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_tip_percentage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_layout_check_amount">
-
-        <EditText
-            android:id="@+id/input_tip_percentage"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_tip_percentage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/tip_percentage_label"
-            android:inputType="number"
-            android:maxLines="1"
-            android:selectAllOnFocus="true"
-            android:imeOptions="actionDone"
-            android:text="" />
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_check_amount">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/input_tip_percentage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/tip_percentage_label"
+                android:inputType="number"
+                android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:imeOptions="actionDone"
+                android:text="" />
 
-    <LinearLayout
-        android:id="@+id/calculation_outputs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_layout_tip_percentage">
+        </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/calculation_outputs"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_margin="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_tip_percentage">
 
-            <TextView
-                android:id="@+id/bill_amount"
-                style="@style/Base.TextAppearance.AppCompat.Large"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                tools:text="$20.00"
-                android:text="$0.00"
-                />
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/bill_amount_label"
-                android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/bill_amount"
+                    style="@style/Base.TextAppearance.AppCompat.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    tools:text="$20.00"
+                    android:text="$0.00" />
+
+                <TextView
+                    android:id="@+id/bill_amount_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/check_amount_output_label"
+                    tools:text="Check"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/check_amount_output_label"
-                tools:text="Check"
-                android:textAlignment="center" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tip_dollar_amount"
+                    style="@style/Base.TextAppearance.AppCompat.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    tools:text="$11.50"
+                    android:text="$0.00" />
+
+                <TextView
+                    android:id="@+id/tip_dollar_amount_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    tools:text="Tip"
+                    android:text="@string/tip_output_label" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/total_dollar_amount"
+                    style="@style/Base.TextAppearance.AppCompat.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    tools:text="$31.50"
+                    android:text="$0.00" />
+
+                <TextView
+                    android:id="@+id/total_dollar_amount_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_output_label"
+                    tools:text="Total"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tip_dollar_amount"
-                style="@style/Base.TextAppearance.AppCompat.Large"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                tools:text="$11.50"
-                android:text="$0.00" />
-
-            <TextView
-                android:id="@+id/tip_dollar_amount_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                tools:text="Tip"
-                android:text="@string/tip_output_label"
-                />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/total_dollar_amount"
-                style="@style/Base.TextAppearance.AppCompat.Large"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                tools:text="$31.50"
-                android:text="$0.00" />
-
-            <TextView
-                android:id="@+id/total_dollar_amount_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/total_output_label"
-                tools:text="Total"
-                android:textAlignment="center" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</layout>
