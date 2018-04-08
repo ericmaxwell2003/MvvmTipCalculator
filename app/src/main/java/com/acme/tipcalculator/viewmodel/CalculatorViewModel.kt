@@ -20,11 +20,11 @@ class CalculatorViewModel(val calculator: Calculator = Calculator()) {
         val tipPct = inputTipPercentage.toIntOrNull()
 
         if(checkAmount != null && tipPct != null) {
+            Log.d(TAG, "CheckAmount: $checkAmount, TipPercentage: $tipPct")
             tipCalculation = calculator.calculateTip(checkAmount, tipPct)
         }
 
     }
-
 }
 
 private const val TAG = "CalculatorViewModel"
