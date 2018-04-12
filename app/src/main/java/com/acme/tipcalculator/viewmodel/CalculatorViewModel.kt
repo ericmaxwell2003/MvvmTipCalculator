@@ -24,5 +24,3 @@ class CalculatorViewModel(val calculator: Calculator = Calculator()) : BaseObser
 
     }
 }
-
-private const val TAG = "CalculatorViewModel"
