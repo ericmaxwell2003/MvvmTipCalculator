@@ -35,7 +35,7 @@
                 android:imeOptions="actionNext"
                 android:maxLines="1"
                 android:selectAllOnFocus="true"
-                android:text="" />
+                android:text="@={vm.inputCheckAmount}" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -57,7 +57,7 @@
                 android:maxLines="1"
                 android:selectAllOnFocus="true"
                 android:imeOptions="actionDone"
-                android:text="" />
+                android:text="@={vm.inputTipPercentage}" />
 
         </android.support.design.widget.TextInputLayout>
 

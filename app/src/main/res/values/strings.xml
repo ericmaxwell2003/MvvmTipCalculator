@@ -3,10 +3,8 @@
 
     <string name="enter_check_amount">Check</string>
     <string name="tip_percentage_label">Tip Percentage</string>
-    <string name="desired_tip_percentage">%1$d\%%</string>
     <string name="total_label">Total</string>
 
-    <string name="dollar_amount">%1$.02f</string>
     <string name="total_output_label">Total</string>
     <string name="tip_output_label">Tip</string>
     <string name="check_amount_output_label">Check</string>

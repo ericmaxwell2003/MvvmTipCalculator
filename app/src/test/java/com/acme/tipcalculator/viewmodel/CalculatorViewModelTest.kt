@@ -5,7 +5,6 @@ import com.acme.tipcalculator.model.TipCalculation
 import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations

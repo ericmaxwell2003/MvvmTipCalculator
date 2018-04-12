@@ -1,10 +1,10 @@
 package com.acme.tipcalculator.viewmodel
 
-import android.util.Log
+import android.databinding.BaseObservable
 import com.acme.tipcalculator.model.Calculator
 import com.acme.tipcalculator.model.TipCalculation
 
-class CalculatorViewModel(val calculator: Calculator = Calculator()) {
+class CalculatorViewModel(val calculator: Calculator = Calculator()) : BaseObservable() {
 
     var inputCheckAmount = ""
 
@@ -14,14 +14,12 @@ class CalculatorViewModel(val calculator: Calculator = Calculator()) {
 
     fun calculateTip() {
 
-        Log.d(TAG, "calculateTipInvoked")
-
         val checkAmount = inputCheckAmount.toDoubleOrNull()
         val tipPct = inputTipPercentage.toIntOrNull()
 
         if(checkAmount != null && tipPct != null) {
-            Log.d(TAG, "CheckAmount: $checkAmount, TipPercentage: $tipPct")
             tipCalculation = calculator.calculateTip(checkAmount, tipPct)
+            notifyChange()
         }
 
     }
