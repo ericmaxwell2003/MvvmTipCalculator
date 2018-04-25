@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     tools:text="$20.00"
-                    android:text="$0.00" />
+                    android:text="@{vm.outputCheckAmount}" />
 
                 <TextView
                     android:id="@+id/bill_amount_label"
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     tools:text="$11.50"
-                    android:text="$0.00" />
+                    android:text="@{vm.outputTipAmount}" />
 
                 <TextView
                     android:id="@+id/tip_dollar_amount_label"
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     tools:text="$31.50"
-                    android:text="$0.00" />
+                    android:text="@{vm.outputTotalDollarAmount}" />
 
                 <TextView
                     android:id="@+id/total_dollar_amount_label"

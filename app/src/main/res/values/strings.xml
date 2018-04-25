@@ -9,4 +9,6 @@
     <string name="tip_output_label">Tip</string>
     <string name="check_amount_output_label">Check</string>
 
+    <string name="dollar_amount">$%1$.02f</string>
+
 </resources>
