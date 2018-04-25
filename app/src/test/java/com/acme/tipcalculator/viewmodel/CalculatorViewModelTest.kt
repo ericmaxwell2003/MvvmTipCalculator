@@ -19,17 +19,17 @@ class CalculatorViewModelTest {
     lateinit var mockCalculator: Calculator
 
     @Mock
-    lateinit var application: Application
+    lateinit var mockApplication: Application
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
         stubResource(0.0, "$0.00")
-        calculatorViewModel = CalculatorViewModel(application, mockCalculator)
+        calculatorViewModel = CalculatorViewModel(mockApplication, mockCalculator)
     }
 
     private fun stubResource(given: Double, returnStub: String) {
-        `when`(application.getString(R.string.dollar_amount, given)).thenReturn(returnStub)
+        `when`(mockApplication.getString(R.string.dollar_amount, given)).thenReturn(returnStub)
     }
 
     @Test
