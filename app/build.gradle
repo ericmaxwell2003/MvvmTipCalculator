@@ -36,8 +36,8 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
     implementation "com.android.support:design:$support_library"
     implementation "com.android.support:support-v4:$support_library"
-    implementation "android.arch.lifecycle:extensions:$arch_comp"
     kapt "com.android.databinding:compiler:$android_plugin"
+    implementation "android.arch.lifecycle:extensions:$arch_comp"
 
     // Test
     testImplementation "junit:junit:$junit"
