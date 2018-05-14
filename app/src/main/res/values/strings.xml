@@ -11,4 +11,9 @@
 
     <string name="dollar_amount">$%1$.02f</string>
 
+    <string name="action_load">Load</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+
+
 </resources>
