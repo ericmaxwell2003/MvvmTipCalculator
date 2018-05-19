@@ -1,8 +1,9 @@
 package com.acme.tipcalculator.model
 
+import android.arch.lifecycle.LiveData
 import java.math.RoundingMode
 
-class Calculator {
+class Calculator(val repository: TipCalculationRepository = TipCalculationRepository()) {
 
     fun calculateTip(checkAmount: Double, tipPct: Int) : TipCalculation {
 
@@ -19,6 +20,18 @@ class Calculator {
                 tipAmount = tipAmount,
                 grandTotal = grandTotal
         )
+    }
+
+    fun saveTipCalculation(tc: TipCalculation) {
+        repository.saveTipCalculation(tc)
+    }
+
+    fun loadTipCalculationByLocationName(locationName: String) : TipCalculation? {
+        return repository.loadTipCalculationByName(locationName)
+    }
+
+    fun loadSavedTipCalculations() : LiveData<List<TipCalculation>> {
+        return repository.loadSavedTipCalculations()
     }
 
 }
