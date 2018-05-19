@@ -2,9 +2,7 @@ package com.acme.tipcalculator.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
-import android.databinding.BaseObservable
-import android.databinding.Bindable
-import com.acme.tipcalculator.BR
+import android.arch.lifecycle.Transformations
 import com.acme.tipcalculator.R
 import com.acme.tipcalculator.model.Calculator
 import com.acme.tipcalculator.model.TipCalculation
@@ -17,10 +15,10 @@ class CalculatorViewModel @JvmOverloads constructor(
     var inputCheckAmount = ""
     var inputTipPercentage = ""
 
-    var outputCheckAmount = ""
-    var outputTipAmount = ""
-    var outputTotalDollarAmount = ""
-    var locationName = ""
+    val outputCheckAmount get() = getApplication<Application>().getString(R.string.dollar_amount, lastTipCalculated.checkAmount)
+    val outputTipAmount get() = getApplication<Application>().getString(R.string.dollar_amount, lastTipCalculated.tipAmount)
+    val outputTotalDollarAmount get() = getApplication<Application>().getString(R.string.dollar_amount, lastTipCalculated.grandTotal)
+    val locationName get() = lastTipCalculated.locationName
 
     init {
         updateOutputs(TipCalculation())
@@ -28,11 +26,7 @@ class CalculatorViewModel @JvmOverloads constructor(
 
     private fun updateOutputs(tc: TipCalculation) {
         lastTipCalculated = tc
-
-        outputCheckAmount = getApplication<Application>().getString(R.string.dollar_amount, tc.checkAmount)
-        outputTipAmount = getApplication<Application>().getString(R.string.dollar_amount, tc.tipAmount)
-        outputTotalDollarAmount = getApplication<Application>().getString(R.string.dollar_amount, tc.grandTotal)
-        locationName = tc.locationName
+        notifyChange()
     }
 
     fun calculateTip() {
@@ -42,7 +36,6 @@ class CalculatorViewModel @JvmOverloads constructor(
 
         if(checkAmount != null && tipPct != null) {
             updateOutputs(calculator.calculateTip(checkAmount, tipPct))
-            notifyChange()
         }
 
     }
@@ -54,15 +47,25 @@ class CalculatorViewModel @JvmOverloads constructor(
         notifyChange()
     }
 
-    fun loadSavedTipCalculations() : LiveData<List<TipCalculation>> {
-        return calculator.loadSavedTipCalculations()
+    fun loadSavedTipSummaries() : LiveData<List<TipCalculationSummaryItem>> {
+        return Transformations.map(calculator.loadSavedTipCalculations(), { tipCalculationObjects ->
+            tipCalculationObjects.map {
+                TipCalculationSummaryItem(it.locationName,
+                        getApplication<Application>().getString(R.string.dollar_amount, it.grandTotal))
+            }
+        })
     }
 
-    fun loadTipCalculation(tc: TipCalculation) {
-        inputCheckAmount = tc.checkAmount.toString()
-        inputTipPercentage = tc.tipPct.toString()
+    fun loadTipCalculation(locationName: String) {
 
-        updateOutputs(tc)
-        notifyChange()
+        val tc = calculator.loadTipCalculationByName(locationName)
+
+        if (tc!= null) {
+            inputCheckAmount = tc.checkAmount.toString()
+            inputTipPercentage = tc.tipPct.toString()
+
+            updateOutputs(tc)
+            notifyChange()
+        }
     }
 }

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="vm" type="com.acme.tipcalculator.model.TipCalculation" />
+        <variable
+            name="item"
+            type="com.acme.tipcalculator.viewmodel.TipCalculationSummaryItem" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -23,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Veggie Chop House"
-            android:text="@{vm.locationName}"/>
+            android:text="@{item.locationName}" />
 
         <TextView
             android:id="@+id/total_dollar_amount"
@@ -34,8 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="$10.00"
-            android:text="@{@string/dollar_amount(vm.grandTotal)}"
-            />
+            android:text="@{item.totalDollarAmount}" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

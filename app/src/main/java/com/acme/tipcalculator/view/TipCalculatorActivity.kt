@@ -2,6 +2,7 @@ package com.acme.tipcalculator.view
 
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
+import android.location.Location
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -14,7 +15,7 @@ import com.acme.tipcalculator.viewmodel.CalculatorViewModel
 
 class TipCalculatorActivity : AppCompatActivity(),
         LoadDialogFragment.Callback,
-        SaveDialogFragment.Callback {
+        SaveDialogFragment.Callback  {
 
     lateinit var binding: ActivityTipCalculatorBinding
 
@@ -60,9 +61,9 @@ class TipCalculatorActivity : AppCompatActivity(),
         loadFragment.show(supportFragmentManager, "LoadDialog")
     }
 
-    override fun onTipSelected(tipCalc: TipCalculation) {
-        binding.vm?.loadTipCalculation(tipCalc)
-        Snackbar.make(binding.root, "Loaded ${tipCalc.locationName}", Snackbar.LENGTH_SHORT).show()
+    override fun onTipSelected(locationName: String) {
+        binding.vm?.loadTipCalculation(locationName)
+        Snackbar.make(binding.root, "Loaded ${locationName}", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onSaveTip(name: String) {

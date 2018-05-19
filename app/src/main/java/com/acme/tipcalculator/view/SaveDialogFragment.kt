@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
+import android.view.View
 import android.widget.EditText
 import com.acme.tipcalculator.R
 
@@ -31,7 +32,9 @@ class SaveDialogFragment : DialogFragment() {
 
         val saveDialog = context?.let { ctx ->
 
-            val editText = buildDialogView(ctx)
+            val editText = EditText(ctx)
+            editText.id = viewId
+            editText.hint = "Enter Location"
 
             AlertDialog.Builder(ctx)
                     .setView(editText)
@@ -44,13 +47,16 @@ class SaveDialogFragment : DialogFragment() {
     }
 
     private fun onSave(editText: EditText) {
-        saveTipCallback?.onSaveTip(editText.text.toString())
+
+        val text = editText.text
+        if(text.isNotEmpty()) {
+            saveTipCallback?.onSaveTip(text.toString())
+        }
     }
 
-    private fun buildDialogView(ctx: Context) : EditText {
-        val location = EditText(ctx)
-        location.hint = "Enter Location"
-        return location
+    companion object {
+        val viewId = View.generateViewId()
     }
-
 }
+
+

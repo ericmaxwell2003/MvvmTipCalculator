@@ -6,42 +6,84 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.acme.tipcalculator.R
 import com.acme.tipcalculator.databinding.SavedTipCalculationsListItemBinding
-import com.acme.tipcalculator.model.TipCalculation
+import com.acme.tipcalculator.viewmodel.TipCalculationSummaryItem
 
-class LoadTipCalculationRecyclerAdapter(
-        val savedTipCalculations: MutableList<TipCalculation> = mutableListOf<TipCalculation>(),
-        val onTipCalcSelected: (tc: TipCalculation) -> Unit = {}) :
-        RecyclerView.Adapter<LoadTipCalculationRecyclerAdapter.LoadTipCalculationViewHolder>() {
 
-    fun updateList(updates: List<TipCalculation>) {
-        savedTipCalculations.clear()
-        savedTipCalculations.addAll(updates)
+class LoadTipCalculationRecyclerAdapter(val onItemSelected: (item: TipCalculationSummaryItem) -> Unit)
+    : RecyclerView.Adapter<LoadTipCalculationRecyclerAdapter.LoadTipCalculationViewHolder>() {
+
+    val tipCalculationSummaries = mutableListOf<TipCalculationSummaryItem>()
+
+    fun updateList(updates: List<TipCalculationSummaryItem>) {
+        tipCalculationSummaries.clear()
+        tipCalculationSummaries.addAll(updates)
         notifyDataSetChanged()
     }
-
-    override fun onBindViewHolder(holder: LoadTipCalculationViewHolder, position: Int) {
-        holder.bind(savedTipCalculations[position])
-    }
-
-    override fun getItemCount() = savedTipCalculations.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoadTipCalculationViewHolder {
 
         val inflater = LayoutInflater.from(parent.context)
+
         val binding = DataBindingUtil.inflate<SavedTipCalculationsListItemBinding>(
                 inflater, R.layout.saved_tip_calculations_list_item, parent, false)
+
         return LoadTipCalculationViewHolder(binding)
 
     }
 
-    inner class LoadTipCalculationViewHolder(val binding: SavedTipCalculationsListItemBinding) :
-            RecyclerView.ViewHolder(binding.root) {
+    override fun getItemCount(): Int {
+        return tipCalculationSummaries.size
+    }
 
-        fun bind(tipCalc: TipCalculation) {
-            binding.vm = tipCalc
-            binding.root.setOnClickListener { onTipCalcSelected(tipCalc) }
+    override fun onBindViewHolder(holder: LoadTipCalculationViewHolder, position: Int) {
+        holder.bind(tipCalculationSummaries[position])
+    }
+
+    inner class LoadTipCalculationViewHolder(val binding: SavedTipCalculationsListItemBinding)
+        : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: TipCalculationSummaryItem) {
+            binding.item = item
+            binding.root.setOnClickListener { onItemSelected(item) }
             binding.executePendingBindings()
         }
     }
-
 }
+
+//class LoadTipCalculationRecyclerAdapter(
+//        val tipCalculationSummaries: MutableList<TipCalculation> = mutableListOf<TipCalculation>(),
+//        val onTipCalcSelected: (tc: TipCalculation) -> Unit = {}) :
+//        RecyclerView.Adapter<LoadTipCalculationRecyclerAdapter.LoadTipCalculationViewHolder>() {
+//
+//    fun updateList(updates: List<TipCalculation>) {
+//        tipCalculationSummaries.clear()
+//        tipCalculationSummaries.addAll(updates)
+//        notifyDataSetChanged()
+//    }
+//
+//    override fun onBindViewHolder(holder: LoadTipCalculationViewHolder, position: Int) {
+//        holder.bind(tipCalculationSummaries[position])
+//    }
+//
+//    override fun getItemCount() = tipCalculationSummaries.size
+//
+//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoadTipCalculationViewHolder {
+//
+//        val inflater = LayoutInflater.from(parent.context)
+//        val binding = DataBindingUtil.inflate<SavedTipCalculationsListItemBinding>(
+//                inflater, R.layout.saved_tip_calculations_list_item, parent, false)
+//        return LoadTipCalculationViewHolder(binding)
+//
+//    }
+//
+//    inner class LoadTipCalculationViewHolder(val binding: SavedTipCalculationsListItemBinding) :
+//            RecyclerView.ViewHolder(binding.root) {
+//
+//        fun bind(tipCalc: TipCalculation) {
+////            binding.vm = tipCalc
+//            binding.root.setOnClickListener { onTipCalcSelected(tipCalc) }
+//            binding.executePendingBindings()
+//        }
+//    }
+//
+//}
