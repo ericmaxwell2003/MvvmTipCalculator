@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.support.v7.app.AlertDialog
 
 
 class LoadDialogFragment : DialogFragment() {
@@ -26,8 +27,14 @@ class LoadDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
+        val dialog = context?.let { ctx ->
 
+            AlertDialog.Builder(ctx)
+                    .create()
 
+        }
+
+        return dialog!!
     }
 
 }
