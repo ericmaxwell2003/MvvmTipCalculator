@@ -16,6 +16,7 @@ class TipCalculatorActivity : AppCompatActivity(), SaveDialogFragment.Callback {
     lateinit var binding: ActivityTipCalculatorBinding
 
     override fun onSaveTip(name: String) {
+        binding.vm?.saveCurrentTip(name)
         Snackbar.make(binding.root, "Saved $name", Snackbar.LENGTH_SHORT).show()
     }
 

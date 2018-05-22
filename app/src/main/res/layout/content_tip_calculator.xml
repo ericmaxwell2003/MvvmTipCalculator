@@ -153,5 +153,19 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/calculation_name"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calculation_outputs"
+            android:textAlignment="center"
+            android:text="@{vm.locationName}"
+            tools:text="Veggie Palace" />
+
     </android.support.constraint.ConstraintLayout>
 </layout>
