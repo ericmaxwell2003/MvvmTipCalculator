@@ -15,4 +15,6 @@
     <string name="action_save">Save</string>
     <string name="action_cancel">Cancel</string>
 
+    <string name="action_load">Load</string>
+
 </resources>
