@@ -11,13 +11,18 @@ import com.acme.tipcalculator.R
 import com.acme.tipcalculator.databinding.ActivityTipCalculatorBinding
 import com.acme.tipcalculator.viewmodel.CalculatorViewModel
 
-class TipCalculatorActivity : AppCompatActivity(), SaveDialogFragment.Callback {
+class TipCalculatorActivity : AppCompatActivity(), SaveDialogFragment.Callback, LoadDialogFragment.Callback {
 
     lateinit var binding: ActivityTipCalculatorBinding
 
     override fun onSaveTip(name: String) {
         binding.vm?.saveCurrentTip(name)
         Snackbar.make(binding.root, "Saved $name", Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onTipSelected(name: String) {
+        // Ask ViewModel to load the tip by this name
+        Snackbar.make(binding.root, "Loaded $name", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
