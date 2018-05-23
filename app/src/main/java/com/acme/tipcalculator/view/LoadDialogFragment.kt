@@ -53,6 +53,9 @@ class LoadDialogFragment : DialogFragment() {
 
         rv.setHasFixedSize(true)
         rv.addItemDecoration(DividerItemDecoration(ctx, DividerItemDecoration.VERTICAL))
+
+
+
         return rv
     }
 
