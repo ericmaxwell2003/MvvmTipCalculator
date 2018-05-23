@@ -1,7 +1,8 @@
 package com.acme.tipcalculator.viewmodel
 
 import android.app.Application
-import android.databinding.BaseObservable
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.Transformations
 import com.acme.tipcalculator.R
 import com.acme.tipcalculator.model.Calculator
 import com.acme.tipcalculator.model.TipCalculation
@@ -34,6 +35,29 @@ class CalculatorViewModel @JvmOverloads constructor(
         calculator.saveTipCalculation(tipToSave)
         updateOutputs(tipToSave)
     }
+
+    fun loadSavedTipCalculationSummaries() : LiveData<List<TipCalculationSummaryItem>> {
+        return Transformations.map(calculator.loadSavedTipCalculations(), { tipCalculationObjects ->
+            tipCalculationObjects.map {
+                TipCalculationSummaryItem(it.locationName,
+                        getApplication<Application>().getString(R.string.dollar_amount, it.grandTotal))
+            }
+        })
+    }
+
+    fun loadTipCalculation(name: String) {
+
+        val tc = calculator.loadTipCalculationByLocationName(name)
+
+        if (tc != null) {
+            inputCheckAmount = tc.checkAmount.toString()
+            inputTipPercentage = tc.tipPct.toString()
+
+            updateOutputs(tc)
+            notifyChange()
+        }
+    }
+
 
     fun calculateTip() {
 
