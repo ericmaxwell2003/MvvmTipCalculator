@@ -21,7 +21,7 @@ class TipCalculatorActivity : AppCompatActivity(), SaveDialogFragment.Callback, 
     }
 
     override fun onTipSelected(name: String) {
-        // Ask ViewModel to load the tip by this name
+        binding.vm?.loadTipCalculation(name)
         Snackbar.make(binding.root, "Loaded $name", Snackbar.LENGTH_SHORT).show()
     }
 
